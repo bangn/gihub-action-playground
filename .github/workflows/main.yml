@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  # Trigger the workflow on the new 'v*' tag created
+  push
+
+jobs:
+  build_artifact:
+    runs:
+      using: 'docker'
+    name: ${{ matrix.os }}/deno-${{ matrix.deno }}/${{ github.ref }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        deno:
+          - "1.6.3"
+
+    steps:
+      - name: Set binary path name
+        run: echo "BINARY_PATH=README.md" >> $GITHUB_ENV
+
+      - name: Get binary path name
+        run: echo $BINARY_PATH

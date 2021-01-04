@@ -19,3 +19,8 @@ jobs:
 
       - name: Get binary path name
         run: echo $BINARY_PATH
+
+      - name: Compress binary
+        uses: svenstaro/upx-action@2.0.1
+        with:
+          file: $BINARY_PATH

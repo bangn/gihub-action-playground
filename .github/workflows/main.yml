@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Set binary path name
-        run: echo "BINARY_PATH=README.md" >> $GITHUB_ENV
+        run: echo "BINARY_PATH=./README.md" >> $GITHUB_ENV
 
       - name: Get binary path name
         run: echo ${{env.BINARY_PATH}}
@@ -23,4 +23,4 @@ jobs:
       - name: Compress binary
         uses: svenstaro/upx-action@2.0.1
         with:
-          file: $BINARY_PATH
+          file: ${{env.BINARY_PATH}}
